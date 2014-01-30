@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="./app.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+ 
+<script>
+$(document).ready(function() {
+	// initial input
+	var input = ['A','B','C','C','D','Copy your list here','E','B'];
+	var dupes = [];
+	var output = [];
+	$("#in").html(input.join("\n"));
+	
+	process = function(input) {
+		input = input.sort()
+		dupes = [];
+		output = [];
+		
+		for (var i = 0; i < input.length; i++) {
+			if(!input[i] || 0 === input[i].length || /^\s*$/.test(input[i])) continue; // ignore line breaks and blank lines 
+			else if (i != input.length && input[i] == input[i+1]) {
+				dupes.push(input[i]);
+			}
+			else {
+				output.push(input[i]);
+			}
+		}
+		
+		$("#out").html(output.join("\n"));
+		$("#dupes").html(dupes.join("\n"));
+
+		//console.log('input:\t' + input);
+		//console.log('output:\t' + output);
+		//console.log('dupes:\t' + dupes);
+	};
+	
+	process(input);
+	
+	// add input, or copy-paste
+    $('#in').keyup(function(){
+		input = getInputs();
+		clearOutputs();
+		process(input);
+    });
+	
+	getInputs = function() {
+		return $('#in').val().split('\n');
+	};
+	
+	clearOutputs = function() {
+		$("#out").html("");
+		$("#dupes").html("");
+	};
+	
+});
+</script> 
+
+</head>
+
+<body>
+
+	<div class="container">
+	
+		</br>
+	
+		<div class="row">
+			<div class="col-md-4">
+			</div>
+			<div class="col-md-4">
+			</div>
+			<div class="col-md-4">
+			</div>
+		</div>
+	
+		</br>
+	
+		<div class="row">
+		
+			<div class="col-md-4">
+				<div id="textAreaTitle">INPUT</div>
+				<textarea id="in"></textarea>
+			</div>
+			
+			<div class="col-md-4">
+				<div id="textAreaTitle">DUPLICATES</div>
+				<textarea id="dupes"></textarea>
+			</div>
+			
+			<div class="col-md-4">
+				<div id="textAreaTitle">OUTPUT</div>
+				<textarea id="out"></textarea>
+			</div>
+			
+		</div>
+	</div>
+
+</body>
+</html>
