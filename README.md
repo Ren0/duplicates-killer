@@ -5,6 +5,8 @@ Small Javascrip application that detects and removes duplicates from a list of i
 Useful when you work with lists of data and want to detect or remove duplicates.
 Usually it's painfull to do this in Excel or Notepad++ so I created this tool to save time.
 
+![alt tag](https://github.com/Ren0/duplicates-killer/blob/master/screenshot.png)
+
 Left column is where to copy-paste the list.
 Middle column is the duplicates that were detected.
 Right column is a duplicates-free list.
